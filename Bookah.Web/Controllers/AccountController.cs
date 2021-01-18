@@ -4,6 +4,7 @@ using Bookah.Models;
 using Bookah.Web.Models;
 using Firebase.Auth;
 using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,10 @@ namespace Bookah.Web.Controllers
         public AccountController(IUserRepo _UserRepo)
         {
             UserRepo = _UserRepo;
+        }
+        public ActionResult Index()
+        {
+            return RedirectToAction("Index","Home");
         }
         // GET: Account/Register
         public ActionResult Register()
@@ -66,7 +71,7 @@ namespace Bookah.Web.Controllers
 
                 ModelState.AddModelError(string.Empty, ex.Message);
             }
-            return View(registerUser);
+            return View(/*registerUser*/);
         }
         [AllowAnonymous]
         [HttpGet]
@@ -106,6 +111,7 @@ namespace Bookah.Web.Controllers
                     {
                         this.SignInUser(user.Email, token, false);
                         return this.RedirectToAction("Index", "Home");
+                        //return this.RedirectToLocal(returnUrl);
                     }
                     else
                     {
@@ -152,7 +158,7 @@ namespace Bookah.Web.Controllers
                 var ctx = Request.GetOwinContext();
                 var authenticationManager = ctx.Authentication;
                 //Sign In.
-                authenticationManager.SignIn(new Microsoft.Owin.Security.AuthenticationProperties()
+                authenticationManager.SignIn(new AuthenticationProperties()
                 {
                     IsPersistent = isPersistent
                 }, claimIdentities);

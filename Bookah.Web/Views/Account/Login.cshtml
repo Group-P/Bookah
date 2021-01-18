@@ -1,31 +1,48 @@
 ﻿@model Bookah.Web.Models.LoginViewModel
 @{
     ViewBag.Title = "Login";
-}
-<div class="row justify-content-md-center">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                Login
-            </div>
-            <div class="card-body">
+    Layout = null;
+}<!-- Font Icon-->
+<link href="~/Web/fonts/material-icon/css/material-design-iconic-font.min.css" rel="stylesheet" />
+
+<!--Main css-->
+<link href="~/Web/css/style.css" rel="stylesheet" />
+
+<body>
+    <div class="main">
+        <h1>Bookah Login</h1>
+        <div class="container">
+            <div class="sign-up-content">
                 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                 {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
+                    <h2 class="form-title">Log In</h2>
+                    <div class="form-textbox">
                         @Html.LabelFor(m => m.EmailAddress)
-                        @Html.TextBoxFor(m => m.EmailAddress, "", new { @class = "form-control", @placeholder = "Email" })
-
+                        @Html.TextBoxFor(m => m.EmailAddress, "", new { id = "email" })
+                        @Html.ValidationMessageFor(m => m.EmailAddress, "", new { @class = "badge badge-danger" })
                     </div>
-                    <div class="form-group">
+                    <br />
+                    <div class="form-textbox">
                         @Html.LabelFor(m => m.Password)
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        @Html.TextBoxFor(m => m.Password, "", new { @id = "name" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "badge badge-danger" })
                     </div>
+                    <br />
+                    <div class="form-textbox">
+                        <input type="submit" name="submit" class="submit" value="Login" />
+                    </div>
+                    <br />
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+                        Get redirected back to the Home page <a href="/Home/Index" class="loginhere-link" style="text-align: center">here</a>
                     </div>
                 }
+                <p class="loginhere">
+                    Don't have an account ? <a href="/Account/Register" class="loginhere">here</a>
+                </p>
+
             </div>
         </div>
     </div>
-</div>
+    <script src="~/Web/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Web/js/main.js"></script>
+</body>

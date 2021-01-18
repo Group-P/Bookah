@@ -30,12 +30,13 @@ namespace Bookah.Web.Models
         public string Password { get; set; }
 
         [Required]
-        [Display(Name = "Password")]
+        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Cellphone Number")]
+        [Display(Name = "Cell Number")]
         public string CellphoneNo { get; set; }
 
         [Required]
@@ -43,7 +44,7 @@ namespace Bookah.Web.Models
         public string ID_Number { get; set; }
 
         
-        [Display(Name = "Student Number")]
+        [Display(Name = "Student No")]
         public string StudentNo { get; set; }
     }
 }

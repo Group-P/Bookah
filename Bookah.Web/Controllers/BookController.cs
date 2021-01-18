@@ -36,7 +36,7 @@ namespace Bookah.Web.Controllers
             FileStream stream;
             if (file != null && file.ContentLength > 0)
             {
-                string path = Path.Combine(Server.MapPath("~/Content/Images/Books/"), file.FileName);
+                string path = Path.Combine(Server.MapPath("~/Content/"), file.FileName);
                 file.SaveAs(path);
                 //var stream = new MemoryStream(Encoding.ASCII.GetBytes(path));
                 stream = new FileStream(Path.Combine(path), FileMode.Open);

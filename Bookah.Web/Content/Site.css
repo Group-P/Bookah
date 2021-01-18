@@ -22,3 +22,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.panel, .panel-body, .form-group {
+    text-align: center;
+    
+}
